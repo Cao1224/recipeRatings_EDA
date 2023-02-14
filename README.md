@@ -1,4 +1,4 @@
-# recipeRatings_EDA
+# TastyData
 
 by Yuancheng Cao (yuc094@ucsd.edu)
 
