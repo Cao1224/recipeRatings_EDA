@@ -1,6 +1,6 @@
 # TastyData
 
-by Yuancheng Cao (yuc094@ucsd.edu)
+by Yuancheng Cao (yuc094@ucsd.edu) AND Grace Chen
 
 ## Introduction
 
