@@ -11,11 +11,16 @@ Credit: (https://dsc80.com/project3/recipes-and-ratings/)
 
 # Data Cleaning
 
+
 # Univariate Analysis
+
 
 # Bivariate Analysis
 
+
 # Interesting Aggregates
+
+
 
 ## Assesssment of Missingness
 
