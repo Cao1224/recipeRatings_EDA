@@ -31,3 +31,9 @@ Credit: (https://dsc80.com/project3/recipes-and-ratings/)
 
 
 ## Hypothesis
+### Null and Alternative Hypothesis
+- Null hypothesis:
+- Alternative hypothesis
+
+### Choice of Test Statistic and Significance Level
+
