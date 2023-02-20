@@ -10,7 +10,24 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 ## Cleaning and EDA
 
 ### Data Cleaning
-
+1. **Load the Datasets**
+  - Use `pd.read_csv()` to read 'recipes' dataset with os.path.join() to get recipes dataset.
+  - Use `pd.read_csv()` to read 'interactions' dataset with os.path.join() to get interactions dataset.
+2. **Merge DataFrames**
+  - Left merge the recipes and interactions datasets together.
+  - Fill all ratings of 0 with `np.nan` in 'rating' column 
+    - **Following Question: why need to fill all ratings of 0 with `np.nan`.**
+  - Find the average rating per recipe, as a Series
+    - Group by the 'id' (Recipe ID) and get 'rating' column with [],
+    - Use `mean()` method to calculate mean of each recipe,
+    - Use `reset_index()` and set column names to make it as a DataFrame
+    - Left merge average_rating DataFrame and recipes dataset
+    - In order to facilitate the extraction of data for later analysis, split the string type of list of nutrition information in `nutrition` column into individual columns
+    - Rename the columns in 'nutritions' DataFrame to match the nutrition information
+    - Convert all data in 'nutritions' DataFrame to float type
+    
+    
+  
 
 ### Univariate Analysis
 
