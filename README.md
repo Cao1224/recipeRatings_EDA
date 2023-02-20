@@ -15,7 +15,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
   - Use `pd.read_csv()` to read 'interactions' dataset with os.path.join() to get interactions dataset.
 2. **Merge DataFrames**
   - Left merge the recipes and interactions datasets together.
-  - Fill all ratings of 0 with `np.nan` in 'rating' column
+  - Fill all ratings of 0 with `np.nan` in 'rating' column.
     - **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
     - The reason why we need to fill all ratings of 0 with `np.nan` is to handle missing or incomplete data. In some cases, a rating of 0 may indicate that the recipe is not rated at all and does not necessarily reflect the quality of the recipe. By replacing these 0 values with `np.nan`, we can avoid the bias that might be introduced by using 0 ass a proxy for missing values. In addition, when we are computing statistics, `np.nan` is automatically ignored.
   - Find the average rating per recipe, as a Series
@@ -26,6 +26,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
     - In order to facilitate the extraction of data for later analysis, split the string type of list of nutrition information in `nutrition` column into individual columns
     - Rename the columns in 'nutritions' DataFrame to match the nutrition information
     - Convert all data in 'nutritions' DataFrame to float type
+  - Know the datatypes of DataFrame
     
     
   
