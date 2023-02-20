@@ -9,25 +9,25 @@ Credit: (https://dsc80.com/project3/recipes-and-ratings/)
 
 ## Cleaning and EDA
 
-# Data Cleaning
+### Data Cleaning
 
 
-# Univariate Analysis
+### Univariate Analysis
 
 
-# Bivariate Analysis
+### Bivariate Analysis
 
 
-# Interesting Aggregates
+### Interesting Aggregates
 
 
 
 ## Assesssment of Missingness
 
-# NMAR Analysis
+### NMAR Analysis
 
 
-# Missingness Dependency
+### Missingness Dependency
 
 
 ## Hypothesis
