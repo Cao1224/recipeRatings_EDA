@@ -92,7 +92,11 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
     | 365630 |       1 |   2929 |
     | 338356 |       5 |   3605 |
     | 392286 |       1 |   4356 |
-2. 
+
+2. The pivot table is grouping the data in the `full_recipes` DataFrame by the recipe id (`id` column) and calculating the sum of values in the `low-protein` and `high-protein` columns for each unique recipe. This can be useful for the understanding how many recipes have each tags (either `low-protein` or `high-protein`). The resulting DataFrame can be used to compare the prevalence of the two tags and identify any patterns or trendss in the data. For example, after pivoting the DataFrame, I found that the recipe id is 519068 has 3 `high-protein` tags and 0 `low-protein` tag. Below DataFrame shows first and last 5 rows of DataFrame.
+
+
+3. 
 
 ## Assesssment of Missingness
 
