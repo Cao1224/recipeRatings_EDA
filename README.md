@@ -27,9 +27,36 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
     - Rename the columns in 'nutritions' DataFrame to match the nutrition information
     - Convert all data in 'nutritions' DataFrame to float type
   - Know the datatypes of DataFrame
-    
-    
-  
+3. **Find the Null values**
+4. **Know the datatypes of each column**: This Series is the DataFrame before adding one-hot encode data.
+
+|                | type    |
+|:---------------|:--------|
+| name           | object  |
+| id             | int64   |
+| minutes        | int64   |
+| contributor_id | int64   |
+| submitted      | object  |
+| tags           | object  |
+| nutrition      | object  |
+| n_steps        | int64   |
+| steps          | object  |
+| description    | object  |
+| ingredients    | object  |
+| n_ingredients  | int64   |
+| user_id        | float64 |
+| recipe_id      | float64 |
+| date           | object  |
+| rating         | float64 |
+| review         | object  |
+| avg_rating     | float64 |
+| calories       | float64 |
+| total_fat      | float64 |
+| sugar          | float64 |
+| sodium         | float64 |
+| protein        | float64 |
+| saturated_fat  | float64 |
+| carbohydrates  | float64 |
 
 ### Univariate Analysis
 
