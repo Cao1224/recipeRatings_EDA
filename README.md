@@ -75,9 +75,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 
 
 ### Interesting Aggregates
-1. This groupby DataFrame shows the count and mean of the `protein` column for each unique recipe ID in the `full_recipes` DataFrame. The resulting DataFrame is sorted in asscending order based on the mean protein value. This DataFrame can help identify which recipes have the highest and lowest protein content, and frequency of each recipe in the `full_recipes` DataFrame.
-    
-    **Below DataFrame shows first and last 5 rows of DataFrame.**
+1. This groupby DataFrame shows the count and mean of the `protein` column for each unique recipe ID in the `full_recipes` DataFrame. The resulting DataFrame is sorted in asscending order based on the mean protein value. This DataFrame can help identify which recipes have the highest and lowest protein content, and frequency of each recipe in the `full_recipes` DataFrame. Below DataFrame shows first and last 5 rows of DataFrame.
 
     |     id |   count |   mean |
     |-------:|--------:|-------:|
@@ -95,15 +93,21 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 
 2. The pivot table is grouping the data in the `full_recipes` DataFrame by the recipe id (`id` column) and calculating the sum of values in the `low-protein` and `high-protein` columns for each unique recipe. This can be useful for the understanding how many recipes have each tags (either `low-protein` or `high-protein`). The resulting DataFrame can be used to compare the prevalence of the two tags and identify any patterns or trendss in the data. For example, after pivoting the DataFrame, I found that the recipe id is 519068 has 3 `high-protein` tags and 0 `low-protein` tag. Below DataFrame shows first 5 rows of DataFrame.
 
-                          |     id |   high-protein |   low-protein |
-                          |-------:|---------------:|--------------:|
-                          | 275022 |              0 |             0 |
-                          | 275024 |              0 |             0 |
-                          | 275026 |              0 |             0 |
-                          | 275030 |              0 |             0 |
-                          | 275032 |              0 |             0 |
+    |     id |   high-protein |   low-protein |
+    |-------:|---------------:|--------------:|
+    | 537459 |              0 |             0 |
+    | 537485 |              0 |             0 |
+    | 537543 |              0 |             0 |
+    | 537671 |              0 |             0 |
+    | 537716 |              0 |             0 |
 
-3. 
+3. I think the above two DataFrames are too big and need to be shrunk further. So, the following groupby table shows the count and mean of protein for recipes with `low-protein` and `high-protein` tags. The categories are defined based on the presence or absence of the respective tags in the recipes. The DataFrame helps to compare the protein content of recipes with and without these tags, and to identify any significant differences in protein content based on these tags. It can also help in creating recipes with a specific protein content range and provide insights into the popularity and nutrient information of recipes with and without these tags.
+
+    |    |   low-protein |   high-protein |   count |     mean |
+    |---:|--------------:|---------------:|--------:|---------:|
+    |  0 |             0 |              0 |  192286 | 35.0086  |
+    |  1 |             0 |              1 |    8229 | 93.2573  |
+    |  2 |             1 |              0 |   33914 |  8.19741 |
 
 ## Assesssment of Missingness
 
