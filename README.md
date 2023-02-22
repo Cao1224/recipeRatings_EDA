@@ -73,6 +73,8 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 
 ### Bivariate Analysis
 
+<iframe src="assets/avg_protein_by_season.html" width=800 height=600 frameBorder=0></iframe>
+
 
 ### Interesting Aggregates
 1. This groupby DataFrame shows the count and mean of the `protein` column for each unique recipe ID in the `full_recipes` DataFrame. The resulting DataFrame is sorted in asscending order based on the mean protein value. This DataFrame can help identify which recipes have the highest and lowest protein content, and frequency of each recipe in the `full_recipes` DataFrame. Below DataFrame shows first and last 5 rows of DataFrame.
