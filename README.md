@@ -66,7 +66,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 
 The histogram shows the mean protein content for each season. The graph shows that the fall and winter recipes have a higher mean protein content compared to the spring and summer recipes. Because there are many holidays in the fall and winter, such as Labor Day, Veteran's Day, Thanksgiving, Christmas, New Year, etc. People often have meals with family and friends. Meat and other high-protein foods are cooked in different wayss for their meals. This may result in higher overall protein content in these recipes. On the other hand, spring and summer seasons tend to have more light and fresh meals, with a focus on vegetables and fruits, whcih generally have lower protein content.
 
-<iframe src="corr_matrix_mul_cols.html" width=600 height=400 frameBorder=0></iframe>
+<iframe src="assets/corr_matrix_mul_cols.html" width=600 height=400 frameBorder=0></iframe>
 
 This correlation matrix created by `heatmap()` from `seaborn`. The correlation matrix shows the correlation between pairs of varaibles in a data set. 
 
