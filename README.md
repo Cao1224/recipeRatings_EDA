@@ -76,7 +76,13 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 | carbohydrates  | float64 |
 
 ### Univariate Analysis
+<iframe src="assets/fig_year_modi.html" width=600 height=400 frameBorder=0></iframe>
 
+.......
+
+<iframe src="assets/fig_minutes_modi.html" width=600 height=400 frameBorder=0></iframe>
+
+.......
 
 ### Bivariate Analysis
 <iframe src="assets/avg_protein_by_season.html" width=600 height=400 frameBorder=0></iframe>
