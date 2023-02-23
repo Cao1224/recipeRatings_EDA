@@ -5,7 +5,24 @@ by Yuancheng Cao (yuc094@ucsd.edu), Grace Chen
 Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc80.com/project3/recipes-and-ratings/)
 
 ## Introduction
-
+  - the **recipes** dataset contains 83782 unique recipes
+  - the **interactions** dataset contains reviews and ratings for recipes in the recipes dataset
+  - we observed from the recipes dataframe that submission year of recipes ranged from 2008 to 2018, so we are interested into studying **interesting trends of changes to the recipes submitted over time**
+  - this information can be **useful to food providers such as restaurant owners, cookbook author, or even the hdh team at UCSD!**
+  - we will perform EDA on a broad range of columns and determine which exact type of change we want to investigate
+  - the columns we will try to investigate are **'submitted'**, **'minutes'**, **'nutrition'**, **'n_steps'**, **'description'**, **'recipe_id'** from the recipes dataset and **'rating'** from the interactions dataset
+  - 'submitted' column indicate the **date recipe was submitted**, we will modify the column and extract the **year** to faciliate our analysis
+  - 'minutes' column indicate suggested **minutes to prepare each recipe**
+  - 'nutrition' column indicate **nutrition of each recipe** in specific form, we extract information on **protein** (as PDV) only to for our analysis
+  - 'n_steps' column indicate **number of steps in each recipe**
+  - 'description' column indicate **user-provided description of each recipe**
+  - 'rating' column indicate **rating given by each using for each recipe**, we will compute an **average** for each recipe column based on this data
+  - we decided to work with the **merged dataframe**
+    - we realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
+  - we plan on investigate trends of changes in all above columns **againest the 'submitted' column**
+  - after EDA, we decided to investigate **if recipes submitted are getting healtheir over time**
+    - in particular, we define recipes with **more protein** as healthier recipes
+    - therefore, our research question is: **is there a significant change in protein amounts for recipes over time?**
 
 ## Cleaning and EDA
 
