@@ -148,6 +148,6 @@ The box plot allows us to explore the relationship between protein content and m
 
 ### Simulate the distribution of mean differences under the null hypothesis and p-value
 
-
+...
 ### Conclusion
 
