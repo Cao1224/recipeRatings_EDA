@@ -17,7 +17,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
   - 'n_steps' column indicate **number of steps in each recipe**
   - 'description' column indicate **user-provided description of each recipe**
   - 'rating' column indicate **rating given by each using for each recipe**, we will compute an **average** for each recipe column based on this data
-  - we decided to work with the **merged dataframe**
+  - we decided to work with the **merged dataframe**, with **234,429 rows**
     - we realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
   - we plan on investigate trends of changes in all above columns **againest the 'submitted' column**
   - after EDA, we decided to investigate **if recipes submitted are getting healtheir over time**
