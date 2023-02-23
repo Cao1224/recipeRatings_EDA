@@ -5,7 +5,24 @@ by Yuancheng Cao (yuc094@ucsd.edu), Grace Chen
 Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc80.com/project3/recipes-and-ratings/)
 
 ## Introduction
-
+  - the **recipes** dataset contains 83782 unique recipes
+  - the **interactions** dataset contains reviews and ratings for recipes in the recipes dataset
+  - we observed from the recipes dataframe that submission year of recipes ranged from 2008 to 2018, so we are interested into studying **interesting trends of changes to the recipes submitted over time**
+  - this information can be **useful to food providers such as restaurant owners, cookbook author, or even the hdh team at UCSD!**
+  - we will perform EDA on a broad range of columns and determine which exact type of change we want to investigate
+  - the columns we will try to investigate are **'submitted'**, **'minutes'**, **'nutrition'**, **'n_steps'**, **'description'**, **'recipe_id'** from the recipes dataset and **'rating'** from the interactions dataset
+  - 'submitted' column indicate the **date recipe was submitted**, we will modify the column and extract the **year** to faciliate our analysis
+  - 'minutes' column indicate suggested **minutes to prepare each recipe**
+  - 'nutrition' column indicate **nutrition of each recipe** in specific form, we extract information on **protein** (as PDV) only to for our analysis
+  - 'n_steps' column indicate **number of steps in each recipe**
+  - 'description' column indicate **user-provided description of each recipe**
+  - 'rating' column indicate **rating given by each using for each recipe**, we will compute an **average** for each recipe column based on this data
+  - we decided to work with the **merged dataframe**, with **234,429 rows**
+    - we realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
+  - we plan on investigate trends of changes in all above columns **againest the 'submitted' column**
+  - after EDA, we decided to investigate **if recipes submitted are getting healtheir over time**
+    - in particular, we define recipes with **more protein** as healthier recipes
+    - therefore, our research question is: **is there a significant change in protein amounts for recipes over time?**
 
 ## Cleaning and EDA
 
@@ -66,9 +83,9 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 
 The histogram shows the mean protein content for each season. The graph shows that the fall and winter recipes have a higher mean protein content compared to the spring and summer recipes. Because there are many holidays in the fall and winter, such as Labor Day, Veteran's Day, Thanksgiving, Christmas, New Year, etc. People often have meals with family and friends. Meat and other high-protein foods are cooked in different wayss for their meals. This may result in higher overall protein content in these recipes. On the other hand, spring and summer seasons tend to have more light and fresh meals, with a focus on vegetables and fruits, whcih generally have lower protein content.
 
-<iframe src="assets/corr_matrix_mul_cols.html" width=600 height=400 frameBorder=0></iframe>
+<iframe src="assets/protein_mb_tags.html" width=600 height=400 frameBorder=0></iframe>
 
-This correlation matrix created by `heatmap()` from `seaborn`. The correlation matrix shows the correlation between pairs of varaibles in a data set. 
+The box plot allows us to explore the relationship between protein content and meat/beef related tags in dataset. First of all, the box plots of the five groupss have outliers. In contrast to the other, the ditrbution of boxplotss with 2 and 4 meat/beef realted taps iss not very diffuse. When the boxplot of the number of meat/beef related label is 0, it shows that only meat and beef have high protein, but also legumes or other foods without these tags still have high protein.
 
 ### Interesting Aggregates
 1. This groupby DataFrame shows the count and mean of the `protein` column for each unique recipe ID in the `full_recipes` DataFrame. The resulting DataFrame is sorted in asscending order based on the mean protein value. This DataFrame can help identify which recipes have the highest and lowest protein content, and frequency of each recipe in the `full_recipes` DataFrame. Below DataFrame shows first and last 5 rows of DataFrame.
@@ -115,8 +132,16 @@ This correlation matrix created by `heatmap()` from `seaborn`. The correlation m
 
 ## Hypothesis
 ### Null and Alternative Hypothesis
-- Null hypothesis:
-- Alternative hypothesis
+- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
+- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
 
 ### Choice of Test Statistic and Significance Level
+- Since we are going to group by the recipes by two periods (2008-2011 and 2012-2014) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there _____.
+- The test statistic is the difference in means between the two periods. Because we need to shuffle the year column in the permutation test, we can simulate the null hypothesis and calculate the p-value based on how many times the randomly generated test statistics are equal to or greater than the observed test statistic.
+- A significance level of 0.05 can be chosen, which is a commonly used in statistical test. 0.05 which means that there is a 5% chance of rejecting the null hypothesis when it is actually true. This significance level is a good choice because it provides a reasonable level of confidence in the results.
+
+### Simulate the distribution of mean differences under the null hypothesis and p-value
+
+
+### Conclusion
 
