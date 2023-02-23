@@ -115,8 +115,16 @@ The box plot allows us to explore the relationship between protein content and m
 
 ## Hypothesis
 ### Null and Alternative Hypothesis
-- Null hypothesis:
-- Alternative hypothesis
+- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
+- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
 
 ### Choice of Test Statistic and Significance Level
+- Since we are going to group by the recipes by two periods (2008-2011 and 2012-2014) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there _____.
+- The test statistic is the difference in means between the two periods. Because we need to shuffle the year column in the permutation test, we can simulate the null hypothesis and calculate the p-value based on how many times the randomly generated test statistics are equal to or greater than the observed test statistic.
+- A significance level of 0.05 can be chosen, which is a commonly used in statistical test. 0.05 which means that there is a 5% chance of rejecting the null hypothesis when it is actually true. This significance level is a good choice because it provides a reasonable level of confidence in the results.
+
+### Simulate the distribution of mean differences under the null hypothesis and p-value
+
+
+### Conclusion
 
