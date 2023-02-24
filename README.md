@@ -78,7 +78,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 ### Univariate Analysis
 <iframe src="assets/fig_year_modi.html" width=600 height=400 frameBorder=0></iframe>
 
-.......
+This histogram shows distribution of the 'submitted' column. Specifically, because we will be grouping submission date by years, this histogram also bins data from the ‘submitted’ column by years. The x axis is labeled by each submitted year, the y axis is labeled by count of recipes submitted in the corresponding year. We can see that the shape of the graph is very left skewed. This indicates that much more recipes were submitted before 2010, the earlier years that we are interested in, while much fewer recipes were submitted from 2014 or later, the late years that we are interested in. However, given that the whole dataframe is large enough, the skewed distribution should will not significantly influence our test results. 
 
 <iframe src="assets/fig_minutes_modi.html" width=600 height=400 frameBorder=0></iframe>
 
