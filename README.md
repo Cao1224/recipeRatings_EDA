@@ -14,8 +14,8 @@ We will perform EDA on a broad range of columns and determine which exact type o
   - 'n_steps' column indicate **number of steps in each recipe**
   - 'description' column indicate **user-provided description of each recipe**
   - 'rating' column indicate **rating given by each using for each recipe**, we will compute an **average** for each recipe column based on this data
-  - we decided to work with the **merged dataframe**, with **234,429 rows**
-    - we realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
+  - We decided to work with the **merged dataframe**, with **234,429 rows**
+    - We realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
 We plan on investigate trends of changes in all above columns **againest the 'submitted' column**.
 After EDA, we decided to investigate **if recipes submitted are getting healtheir over time**. In particular, we define recipes with **more protein** as healthier recipes. Therefore, our research question is: **is there a significant change in protein amounts for recipes over time?**
 
@@ -63,11 +63,11 @@ This histogram shows distribution of the 'submitted' column. Specifically, becau
 
 <iframe src="assets/fig_minutes_modi.html" width=600 height=400 frameBorder=0></iframe>
 
-These two histograms show distribution of the ‘minute’ column. The x axes are labeled by minutes, the y axes are labeled by count of recipes submitted in the corresponding year. The top histogram shows the distribution of the 'minutes' column after removing outliers > 2880 minutes, which is 0.25% of the data. We can see that the shape of the graph is extremely left skewed. Most recipes have suggested preparing time under 120 minutes. So we again removed extreme values > 120 minutes, which is 10.36% of the data and plot the bottom histogram. In the bottom histogram, we observed spikes at integer points ending in 5s and 0s, such as 30 minutes, 20 minutes, or 15 minutes.
+These two histograms show distribution of the ‘minute’ column. The x axes are labeled by minutes, the y axes are labeled by count of recipes submitted in the corresponding year. The top histogram shows the distribution of the 'minutes' column after removing outliers > 2880 minutes, which is 0.25% of the data. We can see that the shape of the graph is extremely left skewed. Most recipes have suggested preparing time under 120 minutes. 
 
 <iframe src="assets/fig_min_less120.html" width=600 height=400 frameBorder=0></iframe>
 
-....
+So we again removed extreme values > 120 minutes, which is 10.36% of the data and plot the bottom histogram. In the bottom histogram, we observed spikes at integer points ending in 5s and 0s, such as 30 minutes, 20 minutes, or 15 minutes.
 
 ### Bivariate Analysis
 <iframe src="assets/avg_protein_by_season.html" width=600 height=400 frameBorder=0></iframe>
