@@ -46,6 +46,7 @@ Note: PDV - stands for “Percentage of Daily Value”
     - Concatenate `tags` DataFrame with `final_recipes` DataFrame horizontally.
   - Drop the columns that we will not use in the visualization, assesment of missingness, and hypothesis testing parts
   - `final_recipes` DataFrame has 234,429 rows and 32 columns
+
 3. **Find the Null values**
 4. **Know the datatypes of each column**
 
