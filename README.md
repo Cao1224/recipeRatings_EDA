@@ -5,12 +5,9 @@ by Yuancheng Cao (yuc094@ucsd.edu), Grace Chen
 Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc80.com/project3/recipes-and-ratings/)
 
 ## Introduction
-  - the **recipes** dataset contains 83782 unique recipes
-  - the **interactions** dataset contains reviews and ratings for recipes in the recipes dataset
-  - we observed from the recipes dataframe that submission year of recipes ranged from 2008 to 2018, so we are interested into studying **interesting trends of changes to the recipes submitted over time**
-  - this information can be **useful to food providers such as restaurant owners, cookbook author, or even the hdh team at UCSD!**
-  - we will perform EDA on a broad range of columns and determine which exact type of change we want to investigate
-  - the columns we will try to investigate are **'submitted'**, **'minutes'**, **'nutrition'**, **'n_steps'**, **'description'**, **'recipe_id'** from the recipes dataset and **'rating'** from the interactions dataset
+The **recipes** dataset contains 83782 unique recipes. The **interactions** dataset contains reviews and ratings for recipes in the recipes dataset.
+We observed from the recipes dataframe that submission year of recipes ranged from 2008 to 2018, so we are interested into studying **interesting trends of changes to the recipes submitted over time**. This information can be **useful to food providers such as restaurant owners, cookbook author, or even the hdh team at UCSD!**
+We will perform EDA on a broad range of columns and determine which exact type of change we want to investigate. The columns we will try to investigate are **'submitted'**, **'minutes'**, **'nutrition'**, **'n_steps'**, **'description'**, **'recipe_id'** from the recipes dataset and **'rating'** from the interactions dataset:
   - 'submitted' column indicate the **date recipe was submitted**, we will modify the column and extract the **year** to faciliate our analysis
   - 'minutes' column indicate suggested **minutes to prepare each recipe**
   - 'nutrition' column indicate **nutrition of each recipe** in specific form, we extract information on **protein** (as PDV) only to for our analysis
@@ -19,10 +16,8 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
   - 'rating' column indicate **rating given by each using for each recipe**, we will compute an **average** for each recipe column based on this data
   - we decided to work with the **merged dataframe**, with **234,429 rows**
     - we realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
-  - we plan on investigate trends of changes in all above columns **againest the 'submitted' column**
-  - after EDA, we decided to investigate **if recipes submitted are getting healtheir over time**
-    - in particular, we define recipes with **more protein** as healthier recipes
-    - therefore, our research question is: **is there a significant change in protein amounts for recipes over time?**
+We plan on investigate trends of changes in all above columns **againest the 'submitted' column**.
+After EDA, we decided to investigate **if recipes submitted are getting healtheir over time**. In particular, we define recipes with **more protein** as healthier recipes. Therefore, our research question is: **is there a significant change in protein amounts for recipes over time?**
 
 ## Cleaning and EDA
 
@@ -82,11 +77,7 @@ This histogram shows distribution of the 'submitted' column. Specifically, becau
 
 <iframe src="assets/fig_minutes_modi.html" width=600 height=400 frameBorder=0></iframe>
 
-.......
-
-<iframe src="assets/fig_min_less120.html" width=600 height=400 frameBorder=0></iframe>
-
-......
+These two histograms show distribution of the ‘minute’ column. The x axes are labeled by minutes, the y axes are labeled by count of recipes submitted in the corresponding year. The top histogram shows the distribution of the 'minutes' column after removing outliers > 2880 minutes, which is 0.25% of the data. We can see that the shape of the graph is extremely left skewed. Most recipes have suggested preparing time under 120 minutes. So we again removed extreme values > 120 minutes, which is 10.36% of the data and plot the bottom histogram. In the bottom histogram, we observed spikes at integer points ending in 5s and 0s, such as 30 minutes, 20 minutes, or 15 minutes.
 
 ### Bivariate Analysis
 <iframe src="assets/avg_protein_by_season.html" width=600 height=400 frameBorder=0></iframe>
@@ -135,37 +126,25 @@ The box plot allows us to explore the relationship between protein content and m
 ## Assesssment of Missingness
 
 ### NMAR Analysis
+Out of the three columns with missing values, we believe that the column 'rating' from the interactions dataset might be NMAR. People are more likely to rate a recipe if they have extreme opinions towards the recipe. On the other hand, people are more likely not rate a recipe or simple forget to rate a reipe if they do not have strong opinions toward the recipe. Therefore, we believe that the missing values in the column 'rating' from the interactions are likely in the middle range of all possible ratings, such as 2s, 3s, and 4s. And the missingness of the column might be NMAR.
 
+From the example recipe given directly from the website, food.com, I saw that viewers have the option to SAVE, DOWNLOAD, PRINT, or SHARE the recipe. If we can obtain information on whether each user corresponding to the user id did any of these four actions, as 4 boolean columns, we might be able to explain the missingness of ‘rating’ by performing test. This is because people who save, download print or share the recipes likely have strong opinions about the recipe, whether positive or negative, and this could relate to their willingness of rating the recipe as well.
 
 ### Missingness Dependency
 
 
 ## Hypothesis
 ### Null and Alternative Hypothesis
-- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
-- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
+- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
+- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
 
 ### Choice of Test Statistic and Significance Level
-- Since we are going to group by the recipes by two periods (2008-2013 and 2014-2018) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there is a significant change.
+- Since we are going to group by the recipes by two periods (2008-2011 and 2012-2014) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there _____.
 - The test statistic is the difference in means between the two periods. Because we need to shuffle the year column in the permutation test, we can simulate the null hypothesis and calculate the p-value based on how many times the randomly generated test statistics are equal to or greater than the observed test statistic.
 - A significance level of 0.05 can be chosen, which is a commonly used in statistical test. 0.05 which means that there is a 5% chance of rejecting the null hypothesis when it is actually true. This significance level is a good choice because it provides a reasonable level of confidence in the results.
 
 ### Simulate the distribution of mean differences under the null hypothesis and p-value
-<iframe src="assets/empircal_dist_two_period.html" width=600 height=400 frameBorder=0></iframe>
 
-- To simulate the distribution of mean differences under the null hypothesis, I create two functions to generate random mean difference of protein between two periods. First function called `simulate_null()` with parameter `df` DataFrame to group by the two periods (2008-2013 and 2014-2018) to calculate mean difference of protein (`2014-2018` - `2008-2013`). Second function called `estimate_p_val()` with parameters `df` DataFrame and `N` integer that we need to shuffle the years in 'submitted' column in N times. On each iteration, we must:
-  1. Shuffle the years in 'submitted' column
-  2. Call the stimulate_null() with new DataFrame to compute test statistic and store the result
-
-Finally, to get p-value by using how many mean differences greater than observed mean difference to divided by N.
-- In this case, I simulate the distribution of mean differences under the null hypothesis is 1000 times and p-value is 0.0.
-
+...
 ### Conclusion
-Since the p-value is 0.0, which is less than significance level of 0.05, we can reject the null hypothesis. This means that there is no 
-significant change in the average protein content of recipes between two periods (`2008-2013` and `2014-2018`). At the same time, from the Empirical Distribution of the Mean Difference of Protein Content Between Two Periods, we rarely see a differece of about 5 proteins. Therefore, we reject the null hypothesis that a significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
 
-In addition, I think there could be several confounding factors that could affect the average protein content of recipes between two periods (2008-2013 and 2014-2018). 
-  1. Changes in dietary trends could affect the average potein content of the recipes. First, if you are a bodybuilder or a person who exercises a lot, you need to consume more protein, this way the average protein content of the recipe goes up. Second, if more people switched to sustainable foods, vegetarian or plant-based diets, the average protein content of recipes would drop.
-  2. Changes in cooking techniques that have influenced the protein content of the recipes. Depending on time and cooking tool and methods (pressure cooker vs. slow cooker) affectss the amount of protein in a recipe.
-  3. The availability of ingredients could have changed between the two periods, leading to differences in the protein content of the recipes.
-  4. Changes in portion sizes of recipe could affect the amount of protein.
