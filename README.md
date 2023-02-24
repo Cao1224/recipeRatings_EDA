@@ -157,4 +157,11 @@ Finally, to get p-value by using how many mean differences greater than observed
 - In this case, I simulate the distribution of mean differences under the null hypothesis is 1000 times and p-value is 0.0.
 
 ### Conclusion
+Since the p-value is 0.0, which is less than significance level of 0.05, we can reject the null hypothesis. This means that there is no 
+significant change in the average protein content of recipes between two periods (`2008-2013` and `2014-2018`). At the same time, from the Empirical Distribution of the Mean Difference of Protein Content Between Two Periods, we rarely see a differece of about 5 proteins. Therefore, we reject the null hypothesis that a significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
 
+In addition, I think there could be several confounding factors that could affect the average protein content of recipes between two periods (2008-2013 and 2014-2018). 
+  1. Changes in dietary trends could affect the average potein content of the recipes. First, if you are a bodybuilder or a person who exercises a lot, you need to consume more protein, this way the average protein content of the recipe goes up. Second, if more people switched to sustainable foods, vegetarian or plant-based diets, the average protein content of recipes would drop.
+  2. Changes in cooking techniques that have influenced the protein content of the recipes. Depending on time and cooking tool and methods (pressure cooker vs. slow cooker) affectss the amount of protein in a recipe.
+  3. The availability of ingredients could have changed between the two periods, leading to differences in the protein content of the recipes.
+  4. Changes in portion sizes of recipe could affect the amount of protein.
