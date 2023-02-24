@@ -28,8 +28,7 @@ Note: PDV - stands for “Percentage of Daily Value”
   - Use `pd.read_csv()` to read 'interactions' dataset with os.path.join() to get interactions dataset.
 2. **Merge DataFrames**
   - Left merge the recipes and interactions datasets together.
-  - Fill all ratings of 0 with `np.nan` in 'rating' column.
-    - **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
+  - Fill all ratings of 0 with `np.nan` in 'rating' column. **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
     - The reason why we need to fill all ratings of 0 with `np.nan` is to handle missing or incomplete data. In some cases, a rating of 0 may indicate that the recipe is not rated at all and does not necessarily reflect the quality of the recipe. By replacing these 0 values with `np.nan`, we can avoid the bias that might be introduced by using 0 ass a proxy for missing values. In addition, when we are computing statistics, `np.nan` is automatically ignored.
   - Find the average rating per recipe, as a Series
     - Group by the 'id' (Recipe ID) and get 'rating' column with [],
