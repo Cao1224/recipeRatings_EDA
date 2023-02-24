@@ -32,16 +32,16 @@ Note: PDV - stands for “Percentage of Daily Value”
     - **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
     - The reason why we need to fill all ratings of 0 with `np.nan` is to handle missing or incomplete data. In some cases, a rating of 0 may indicate that the recipe is not rated at all and does not necessarily reflect the quality of the recipe. By replacing these 0 values with `np.nan`, we can avoid the bias that might be introduced by using 0 ass a proxy for missing values. In addition, when we are computing statistics, `np.nan` is automatically ignored.
   - Find the average rating per recipe, as a Series
-    1. Group by the 'id' (Recipe ID) and get 'rating' column with [],
-    2. Use `mean()` method to calculate mean of each recipe,
-    3. Use `reset_index()` and set column names to make it as a DataFrame
-    4. Left merge average_rating DataFrame and recipes dataset
+    - Group by the 'id' (Recipe ID) and get 'rating' column with [],
+    - Use `mean()` method to calculate mean of each recipe,
+    - Use `reset_index()` and set column names to make it as a DataFrame
+    - Left merge average_rating DataFrame and recipes dataset
   - In order to facilitate the extraction of data for later analysis, split the string type of list of nutrition information in `nutrition` column into individual columns
-    1. Rename the columns in 'nutritions' DataFrame to match the nutrition information
-    2. Convert all data in 'nutritions' DataFrame to float type
+    - Rename the columns in 'nutritions' DataFrame to match the nutrition information
+    - Convert all data in 'nutritions' DataFrame to float type
   - Use One-hot encoding to know if a recipe has specifc tag or not and fill all `np.nan` with 0
-    1. Only get tags I need to use in analysis parts, for example, seasons, some meat and beef related-tags
-    2. Concatenate `tags` DataFrame with `final_recipes` DataFrame horizontally
+    - Only get tags I need to use in analysis parts, for example, seasons, some meat and beef related-tags
+    - Concatenate `tags` DataFrame with `final_recipes` DataFrame horizontally
   - Drop the columns that we will not use in the visualization, assesment of missingness, and hypothesis testing parts
   - `final_recipes` DataFrame has 234,429 rows and 32 columns
 3. **Find the Null values**
