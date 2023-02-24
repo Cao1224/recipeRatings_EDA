@@ -14,7 +14,7 @@ We will perform EDA on a broad range of columns and determine which exact type o
   - 'n_steps' column indicate **number of steps in each recipe**
   - 'description' column indicate **user-provided description of each recipe**
   - 'rating' column indicate **rating given by each using for each recipe**, we will compute an **average** for each recipe column based on this data
-  - We decided to work with the **merged dataframe**, with **234,429 rows**
+We decided to work with the **merged dataframe**, with **234,429 rows**
     - We realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
 We plan on investigate trends of changes in all above columns **againest the 'submitted' column**.
 After EDA, we decided to investigate **if recipes submitted contains more protein over time**. Therefore, our research question is: **Is there a significant change in the average protein content of recipes over time?**
