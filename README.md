@@ -138,16 +138,22 @@ The box plot allows us to explore the relationship between protein content and m
 
 ## Hypothesis
 ### Null and Alternative Hypothesis
-- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
-- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
+- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
+- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
 
 ### Choice of Test Statistic and Significance Level
-- Since we are going to group by the recipes by two periods (2008-2011 and 2012-2014) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there _____.
+- Since we are going to group by the recipes by two periods (2008-2013 and 2014-2018) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there _____.
 - The test statistic is the difference in means between the two periods. Because we need to shuffle the year column in the permutation test, we can simulate the null hypothesis and calculate the p-value based on how many times the randomly generated test statistics are equal to or greater than the observed test statistic.
 - A significance level of 0.05 can be chosen, which is a commonly used in statistical test. 0.05 which means that there is a 5% chance of rejecting the null hypothesis when it is actually true. This significance level is a good choice because it provides a reasonable level of confidence in the results.
 
 ### Simulate the distribution of mean differences under the null hypothesis and p-value
+<iframe src="assets/empircal_dist_two_period.html" width=600 height=400 frameBorder=0></iframe>
 
-...
+- To simulate the distribution of mean differences under the null hypothesis, I create two functions to generate random mean difference of protein between two periods. First function called `simulate_null()` with parameter `df` DataFrame to group by the two periods (2008-2013 and 2014-2018) to calculate mean difference of protein (`2014-2018` - `2008-2013`). Second function called `estimate_p_val()` with parameters `df` DataFrame and `N` integer that we need to shuffle the years in 'submitted' column in N times. On each iteration, we must:
+  1. Shuffle the years in 'submitted' column
+  2. Call the stimulate_null() with new DataFrame to compute test statistic and store the result
+Finally, to get p-value by using how many mean differences greater than observed mean difference to divided by N.
+- In this case, I simulate the null 1000 times and p-value is 0.0.
+
 ### Conclusion
 
