@@ -152,6 +152,7 @@ The box plot allows us to explore the relationship between protein content and m
 - To simulate the distribution of mean differences under the null hypothesis, I create two functions to generate random mean difference of protein between two periods. First function called `simulate_null()` with parameter `df` DataFrame to group by the two periods (2008-2013 and 2014-2018) to calculate mean difference of protein (`2014-2018` - `2008-2013`). Second function called `estimate_p_val()` with parameters `df` DataFrame and `N` integer that we need to shuffle the years in 'submitted' column in N times. On each iteration, we must:
   1. Shuffle the years in 'submitted' column
   2. Call the stimulate_null() with new DataFrame to compute test statistic and store the result
+
 Finally, to get p-value by using how many mean differences greater than observed mean difference to divided by N.
 - In this case, I simulate the null 1000 times and p-value is 0.0.
 
