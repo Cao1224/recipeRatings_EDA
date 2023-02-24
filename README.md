@@ -47,8 +47,7 @@ Note: PDV - stands for “Percentage of Daily Value”
   - Drop the columns that we will not use in the visualization, assesment of missingness, and hypothesis testing parts
   - `final_recipes` DataFrame has 234,429 rows and 32 columns
 
-3. **Find the Null values**
-4. **Know the datatypes of each column**
+- **Other Important Steps**: Find the Null values and Know the datatypes of each column
 
 | name                                 |     id |   minutes |   submitted |   n_steps | description                                                                                                                                                                                                                                                                                                                                                                       |   n_ingredients |   rating |   avg_rating |   calories |   total_fat |   sugar |   sodium |   protein |   saturated_fat |   carbohydrates |   spring |   summer |   fall |   winter |   low-protein |   high-protein |   meatloaf |   meat |   meatballs |   beef-organ-meats |   beef |   ground-beef |   beef-ribs |   roast-beef |
 |:-------------------------------------|-------:|----------:|------------:|----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------:|---------:|-------------:|-----------:|------------:|--------:|---------:|----------:|----------------:|----------------:|---------:|---------:|-------:|---------:|--------------:|---------------:|-----------:|-------:|------------:|-------------------:|-------:|--------------:|------------:|-------------:|
@@ -76,7 +75,7 @@ So we again removed extreme values > 120 minutes, which is 10.36% of the data an
 
 The histogram shows the mean protein content for each season. The graph shows that the fall and winter recipes have a higher mean protein content compared to the spring and summer recipes. Because there are many holidays in the fall and winter, such as Labor Day, Veteran's Day, Thanksgiving, Christmas, New Year, etc. People often have meals with family and friends. Meat and other high-protein foods are cooked in different wayss for their meals. This may result in higher overall protein content in these recipes. On the other hand, spring and summer seasons tend to have more light and fresh meals, with a focus on vegetables and fruits, whcih generally have lower protein content.
 
-<iframe src="assets/protein_mb_tags.html" width=600 height=400 frameBorder=0></iframe>
+<iframe src="assets/protein_mb_tags.html" width=700 height=400 frameBorder=0></iframe>
 
 The box plot allows us to explore the relationship between protein content and meat/beef related tags in dataset. First of all, the box plots of the five groupss have outliers. In contrast to the other, the ditrbution of boxplotss with 2 and 4 meat/beef realted taps iss not very diffuse. When the boxplot of the number of meat/beef related label is 0, it shows that only meat and beef have high protein, but also legumes or other foods without these tags still have high protein.
 
