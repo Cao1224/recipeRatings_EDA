@@ -17,7 +17,7 @@ We will perform EDA on a broad range of columns and determine which exact type o
   - We decided to work with the **merged dataframe**, with **234,429 rows**
     - We realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
 We plan on investigate trends of changes in all above columns **againest the 'submitted' column**.
-After EDA, we decided to investigate **if recipes submitted are getting healtheir over time**. In particular, we define recipes with **more protein** as healthier recipes. Therefore, our research question is: **is there a significant change in protein amounts for recipes over time?**
+After EDA, we decided to investigate **if recipes submitted contains more protein over time**. Therefore, our research question is: **Is there a significant change in the average protein content of recipes over time?**
 
 ## Cleaning and EDA
 
