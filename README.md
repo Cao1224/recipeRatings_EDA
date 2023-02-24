@@ -78,7 +78,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
 ### Univariate Analysis
 <iframe src="assets/fig_year_modi.html" width=600 height=400 frameBorder=0></iframe>
 
-.......
+This histogram shows distribution of the 'submitted' column. Specifically, because we will be grouping submission date by years, this histogram also bins data from the ‘submitted’ column by years. The x axis is labeled by each submitted year, the y axis is labeled by count of recipes submitted in the corresponding year. We can see that the shape of the graph is very left skewed. This indicates that much more recipes were submitted before 2010, the earlier years that we are interested in, while much fewer recipes were submitted from 2014 or later, the late years that we are interested in. However, given that the whole dataframe is large enough, the skewed distribution should will not significantly influence our test results. 
 
 <iframe src="assets/fig_minutes_modi.html" width=600 height=400 frameBorder=0></iframe>
 
@@ -138,16 +138,30 @@ The box plot allows us to explore the relationship between protein content and m
 
 ## Hypothesis
 ### Null and Alternative Hypothesis
-- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
-- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2011 and 2012-2014).
+- Null hypothesis: There is a significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
+- Alternative hypothesis: There is no significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
 
 ### Choice of Test Statistic and Significance Level
-- Since we are going to group by the recipes by two periods (2008-2011 and 2012-2014) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there _____.
+- Since we are going to group by the recipes by two periods (2008-2013 and 2014-2018) and calcualte the mean of protein content for each period, we can use a permutation test to determine if newer recipes contain more protein. The permutation test would allow for a comparison of the observed difference in mean protein content bewteen two periods against the null hypothesis that there is a significant change.
 - The test statistic is the difference in means between the two periods. Because we need to shuffle the year column in the permutation test, we can simulate the null hypothesis and calculate the p-value based on how many times the randomly generated test statistics are equal to or greater than the observed test statistic.
 - A significance level of 0.05 can be chosen, which is a commonly used in statistical test. 0.05 which means that there is a 5% chance of rejecting the null hypothesis when it is actually true. This significance level is a good choice because it provides a reasonable level of confidence in the results.
 
 ### Simulate the distribution of mean differences under the null hypothesis and p-value
+<iframe src="assets/empircal_dist_two_period.html" width=600 height=400 frameBorder=0></iframe>
 
-...
+- To simulate the distribution of mean differences under the null hypothesis, I create two functions to generate random mean difference of protein between two periods. First function called `simulate_null()` with parameter `df` DataFrame to group by the two periods (2008-2013 and 2014-2018) to calculate mean difference of protein (`2014-2018` - `2008-2013`). Second function called `estimate_p_val()` with parameters `df` DataFrame and `N` integer that we need to shuffle the years in 'submitted' column in N times. On each iteration, we must:
+  1. Shuffle the years in 'submitted' column
+  2. Call the stimulate_null() with new DataFrame to compute test statistic and store the result
+
+Finally, to get p-value by using how many mean differences greater than observed mean difference to divided by N.
+- In this case, I simulate the distribution of mean differences under the null hypothesis is 1000 times and p-value is 0.0.
+
 ### Conclusion
+Since the p-value is 0.0, which is less than significance level of 0.05, we can reject the null hypothesis. This means that there is no 
+significant change in the average protein content of recipes between two periods (`2008-2013` and `2014-2018`). At the same time, from the Empirical Distribution of the Mean Difference of Protein Content Between Two Periods, we rarely see a differece of about 5 proteins. Therefore, we reject the null hypothesis that a significant change in the average protein content of recipes between two periods (2008-2013 and 2014-2018).
 
+In addition, I think there could be several confounding factors that could affect the average protein content of recipes between two periods (2008-2013 and 2014-2018). 
+  1. Changes in dietary trends could affect the average potein content of the recipes. First, if you are a bodybuilder or a person who exercises a lot, you need to consume more protein, this way the average protein content of the recipe goes up. Second, if more people switched to sustainable foods, vegetarian or plant-based diets, the average protein content of recipes would drop.
+  2. Changes in cooking techniques that have influenced the protein content of the recipes. Depending on time and cooking tool and methods (pressure cooker vs. slow cooker) affectss the amount of protein in a recipe.
+  3. The availability of ingredients could have changed between the two periods, leading to differences in the protein content of the recipes.
+  4. Changes in portion sizes of recipe could affect the amount of protein.
