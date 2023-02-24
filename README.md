@@ -154,7 +154,7 @@ The box plot allows us to explore the relationship between protein content and m
   2. Call the stimulate_null() with new DataFrame to compute test statistic and store the result
 
 Finally, to get p-value by using how many mean differences greater than observed mean difference to divided by N.
-- In this case, I simulate the null 1000 times and p-value is 0.0.
+- In this case, I simulate the distribution of mean differences under the null hypothesis is 1000 times and p-value is 0.0.
 
 ### Conclusion
 
