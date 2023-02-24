@@ -5,24 +5,20 @@ by Yuancheng Cao (yuc094@ucsd.edu), Grace Chen
 Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc80.com/project3/recipes-and-ratings/)
 
 ## Introduction
-  - the **recipes** dataset contains 83782 unique recipes
-  - the **interactions** dataset contains reviews and ratings for recipes in the recipes dataset
-  - we observed from the recipes dataframe that submission year of recipes ranged from 2008 to 2018, so we are interested into studying **interesting trends of changes to the recipes submitted over time**
-  - this information can be **useful to food providers such as restaurant owners, cookbook author, or even the hdh team at UCSD!**
-  - we will perform EDA on a broad range of columns and determine which exact type of change we want to investigate
-  - the columns we will try to investigate are **'submitted'**, **'minutes'**, **'nutrition'**, **'n_steps'**, **'description'**, **'recipe_id'** from the recipes dataset and **'rating'** from the interactions dataset
+The **recipes** dataset contains 83782 unique recipes. The **interactions** dataset contains reviews and ratings for recipes in the recipes dataset.
+We observed from the recipes dataframe that submission year of recipes ranged from 2008 to 2018, so we are interested into studying **interesting trends of changes to the recipes submitted over time**. This information can be **useful to food providers such as restaurant owners, cookbook author, or even the hdh team at UCSD!**.
+
+We will perform EDA on a broad range of columns and determine which exact type of change we want to investigate. The columns we will try to investigate are **'submitted'**, **'minutes'**, **'nutrition'**, **'n_steps'**, **'description'**, **'recipe_id'** from the recipes dataset and **'rating'** from the interactions dataset:
   - 'submitted' column indicate the **date recipe was submitted**, we will modify the column and extract the **year** to faciliate our analysis
   - 'minutes' column indicate suggested **minutes to prepare each recipe**
   - 'nutrition' column indicate **nutrition of each recipe** in specific form, we extract information on **protein** (as PDV) only to for our analysis
   - 'n_steps' column indicate **number of steps in each recipe**
   - 'description' column indicate **user-provided description of each recipe**
   - 'rating' column indicate **rating given by each using for each recipe**, we will compute an **average** for each recipe column based on this data
-  - we decided to work with the **merged dataframe**, with **234,429 rows**
-    - we realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**
-  - we plan on investigate trends of changes in all above columns **againest the 'submitted' column**
-  - after EDA, we decided to investigate **if recipes submitted are getting healtheir over time**
-    - in particular, we define recipes with **more protein** as healthier recipes
-    - therefore, our research question is: **is there a significant change in protein amounts for recipes over time?**
+
+We decided to work with the **merged dataframe**, with **234,429 rows**. We also realized that some recipes are represented in multiple rows, but we believe this overrepresentation will not significantly affect our data since the large dataset is relatively **robust**. Therefore, we plan on investigate trends of changes in all above columns **againest the 'submitted' column**. After EDA, we decided to investigate **if recipes submitted contains more protein over time**. Therefore, our research question is: **Is there a significant change in the average protein content of recipes over time?**
+
+Note: PDV - stands for “Percentage of Daily Value”
 
 ## Cleaning and EDA
 
@@ -32,8 +28,7 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
   - Use `pd.read_csv()` to read 'interactions' dataset with os.path.join() to get interactions dataset.
 2. **Merge DataFrames**
   - Left merge the recipes and interactions datasets together.
-  - Fill all ratings of 0 with `np.nan` in 'rating' column.
-    - **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
+  - Fill all ratings of 0 with `np.nan` in 'rating' column. **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
     - The reason why we need to fill all ratings of 0 with `np.nan` is to handle missing or incomplete data. In some cases, a rating of 0 may indicate that the recipe is not rated at all and does not necessarily reflect the quality of the recipe. By replacing these 0 values with `np.nan`, we can avoid the bias that might be introduced by using 0 ass a proxy for missing values. In addition, when we are computing statistics, `np.nan` is automatically ignored.
   - Find the average rating per recipe, as a Series
     - Group by the 'id' (Recipe ID) and get 'rating' column with [],
@@ -43,37 +38,21 @@ Credit: [UC San Diego DSC 80 Winter 2023 Course Project Instruction](https://dsc
   - In order to facilitate the extraction of data for later analysis, split the string type of list of nutrition information in `nutrition` column into individual columns
     - Rename the columns in 'nutritions' DataFrame to match the nutrition information
     - Convert all data in 'nutritions' DataFrame to float type
-
+  - Use One-hot encoding to know if a recipe has specifc tag or not and fill all `np.nan` with 0
+    - Only get tags I need to use in analysis parts, for example, seasons, some meat and beef related-tags
+    - Concatenate `tags` DataFrame with `final_recipes` DataFrame horizontally
+  - Drop the columns that we will not use in the visualization, assesment of missingness, and hypothesis testing parts
+  - `final_recipes` DataFrame has 234,429 rows and 32 columns
 3. **Find the Null values**
-4. **Know the datatypes of each column**: This Series is the DataFrame before adding one-hot encode data.
+4. **Know the datatypes of each column**
 
-|                | type    |
-|:---------------|:--------|
-| name           | object  |
-| id             | int64   |
-| minutes        | int64   |
-| contributor_id | int64   |
-| submitted      | object  |
-| tags           | object  |
-| nutrition      | object  |
-| n_steps        | int64   |
-| steps          | object  |
-| description    | object  |
-| ingredients    | object  |
-| n_ingredients  | int64   |
-| user_id        | float64 |
-| recipe_id      | float64 |
-| date           | object  |
-| rating         | float64 |
-| review         | object  |
-| avg_rating     | float64 |
-| calories       | float64 |
-| total_fat      | float64 |
-| sugar          | float64 |
-| sodium         | float64 |
-| protein        | float64 |
-| saturated_fat  | float64 |
-| carbohydrates  | float64 |
+| name                                 |     id |   minutes |   submitted |   n_steps | description                                                                                                                                                                                                                                                                                                                                                                       |   n_ingredients |   rating |   avg_rating |   calories |   total_fat |   sugar |   sodium |   protein |   saturated_fat |   carbohydrates |   spring |   summer |   fall |   winter |   low-protein |   high-protein |   meatloaf |   meat |   meatballs |   beef-organ-meats |   beef |   ground-beef |   beef-ribs |   roast-beef |
+|:-------------------------------------|-------:|----------:|------------:|----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------:|---------:|-------------:|-----------:|------------:|--------:|---------:|----------:|----------------:|----------------:|---------:|---------:|-------:|---------:|--------------:|---------------:|-----------:|-------:|------------:|-------------------:|-------:|--------------:|------------:|-------------:|
+| 1 brownies in the world    best ever | 333281 |        40 |        2008 |        10 | these are the most; chocolatey, moist, rich, dense, fudgy, delicious brownies that you'll ever make.....sereiously! there's no doubt that these will be your fav brownies ever for you can add things to them or make them plain.....either way they're pure heaven!                                                                                                              |               9 |        4 |            4 |      138.4 |          10 |      50 |        3 |         3 |              19 |               6 |        0 |        0 |      0 |        0 |             0 |              0 |          0 |      0 |           0 |                  0 |      0 |             0 |           0 |            0 |
+| 1 in canada chocolate chip cookies   | 453467 |        45 |        2011 |        12 | this is the recipe that we use at my school cafeteria for chocolate chip cookies. they must be the best chocolate chip cookies i have ever had! if you don't have margarine or don't like it, then just use butter (softened) instead.                                                                                                                                            |              11 |        5 |            5 |      595.1 |          46 |     211 |       22 |        13 |              51 |              26 |        0 |        0 |      0 |        0 |             0 |              0 |          0 |      0 |           0 |                  0 |      0 |             0 |           0 |            0 |
+| 412 broccoli casserole               | 306168 |        40 |        2008 |         6 | since there are already 411 recipes for broccoli casserole posted to "zaar" ,i decided to call this one  #412 broccoli casserole.i don't think there are any like this one in the database. i based this one on the famous "green bean casserole" from campbell's soup. but i think mine is better since i don't like cream of mushroom soup.submitted to "zaar" on may 28th,2008 |               9 |        5 |            5 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |        0 |        0 |      0 |        0 |             0 |              0 |          0 |      0 |           0 |                  0 |      0 |             0 |           0 |            0 |
+| 412 broccoli casserole               | 306168 |        40 |        2008 |         6 | since there are already 411 recipes for broccoli casserole posted to "zaar" ,i decided to call this one  #412 broccoli casserole.i don't think there are any like this one in the database. i based this one on the famous "green bean casserole" from campbell's soup. but i think mine is better since i don't like cream of mushroom soup.submitted to "zaar" on may 28th,2008 |               9 |        5 |            5 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |        0 |        0 |      0 |        0 |             0 |              0 |          0 |      0 |           0 |                  0 |      0 |             0 |           0 |            0 |
+| 412 broccoli casserole               | 306168 |        40 |        2008 |         6 | since there are already 411 recipes for broccoli casserole posted to "zaar" ,i decided to call this one  #412 broccoli casserole.i don't think there are any like this one in the database. i based this one on the famous "green bean casserole" from campbell's soup. but i think mine is better since i don't like cream of mushroom soup.submitted to "zaar" on may 28th,2008 |               9 |        5 |            5 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |        0 |        0 |      0 |        0 |             0 |              0 |          0 |      0 |           0 |                  0 |      0 |             0 |           0 |            0 |
 
 ### Univariate Analysis
 <iframe src="assets/fig_year_modi.html" width=600 height=400 frameBorder=0></iframe>
@@ -82,7 +61,11 @@ This histogram shows distribution of the 'submitted' column. Specifically, becau
 
 <iframe src="assets/fig_minutes_modi.html" width=600 height=400 frameBorder=0></iframe>
 
-.......
+These two histograms show distribution of the ‘minute’ column. The x axes are labeled by minutes, the y axes are labeled by count of recipes submitted in the corresponding year. The top histogram shows the distribution of the 'minutes' column after removing outliers > 2880 minutes, which is 0.25% of the data. We can see that the shape of the graph is extremely left skewed. Most recipes have suggested preparing time under 120 minutes. 
+
+<iframe src="assets/fig_min_less120.html" width=600 height=400 frameBorder=0></iframe>
+
+So we again removed extreme values > 120 minutes, which is 10.36% of the data and plot the bottom histogram. In the bottom histogram, we observed spikes at integer points ending in 5s and 0s, such as 30 minutes, 20 minutes, or 15 minutes.
 
 ### Bivariate Analysis
 <iframe src="assets/avg_protein_by_season.html" width=600 height=400 frameBorder=0></iframe>
@@ -131,9 +114,15 @@ The box plot allows us to explore the relationship between protein content and m
 ## Assesssment of Missingness
 
 ### NMAR Analysis
+Out of the three columns with missing values, we believe that the column 'rating' from the interactions dataset might be NMAR. People are more likely to rate a recipe if they have extreme opinions towards the recipe. On the other hand, people are more likely not rate a recipe or simple forget to rate a reipe if they do not have strong opinions toward the recipe. Therefore, we believe that the missing values in the column 'rating' from the interactions are likely in the middle range of all possible ratings, such as 2s, 3s, and 4s. And the missingness of the column might be NMAR.
 
+From the example recipe given directly from the website, food.com, I saw that viewers have the option to SAVE, DOWNLOAD, PRINT, or SHARE the recipe. If we can obtain information on whether each user corresponding to the user id did any of these four actions, as 4 boolean columns, we might be able to explain the missingness of ‘rating’ by performing test. This is because people who save, download print or share the recipes likely have strong opinions about the recipe, whether positive or negative, and this could relate to their willingness of rating the recipe as well.
 
 ### Missingness Dependency
+
+The plot on the top shows distribution of the 'description' column when the ‘avg_rating’ column is missing and distribution of the 'description' column when the ‘avg_rating’ column is not missing. The red line represents distribution of the 'description' column when the 'avg_rating' column is missing and the blue line represents distribution of the 'description' column when the 'avg_rating' column is not missing. We observed that the shape of the two distributions are not alike, especially toward the right tail. However, the we center of the two distributions are roughly the same. So we decided to use Kolmogorov-Smirnov statistic as test statistic. We then performed permutation tests to analyze the dependency of the missingness of the 'description' column on the ‘avg_rating' column. From the 1000 repetitions, we found a p_value of 0.017, so we reject the null hypothesis at significance level 0.05, and conclude that the Missingness of column 'description' is indeed dependent on column 'avg_rating’. However, there is no way for use to conclude a causation relationship between the two columns. The graph in the bottom shows the empirical distribution of the test statistic, with the red line representing the observed statistics. This visualization confirms our conclusion from the calculation. 
+
+The plot shows the distribution of the 'description' column when the 'protein' column is missing and distribution of the 'description' column when the 'protein' column is not missing. The red line represents distribution of the 'description' column when the 'protein' column is missing and the blue line represents distribution of the 'description' column when the 'protein' column is not missing.We observed that the shape of the two distributions are similar, except the distribution of the 'description' column when the 'protein' column is not missing has a longer right tail due to the larger data group. However, center of the red line seemed slightly greater than center of the blue line, so we decided to use difference in group means as test statistic. We then performed permutation tests to analyze the dependency of the missingness of the 'description' column on the 'protein' columns. From the 1000 repetitions, we found a p_value of 0.306, so we fail to reject the null hypothesis at significance level 0.05, and conclude that the Missingness of column 'description' is not dependent on column 'protein’. Intuitively, this is totally reasonable, because there does not seem to exist a direct relationship between possibly to not providing a description and the amount of proteins contained in the recipes. 
 
 
 ## Hypothesis
