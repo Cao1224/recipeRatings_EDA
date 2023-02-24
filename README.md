@@ -30,14 +30,17 @@ Note: PDV - stands for “Percentage of Daily Value”
   - Left merge the recipes and interactions datasets together.
   - Fill all ratings of 0 with `np.nan` in 'rating' column. **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
     - The reason why we need to fill all ratings of 0 with `np.nan` is to handle missing or incomplete data. In some cases, a rating of 0 may indicate that the recipe is not rated at all and does not necessarily reflect the quality of the recipe. By replacing these 0 values with `np.nan`, we can avoid the bias that might be introduced by using 0 ass a proxy for missing values. In addition, when we are computing statistics, `np.nan` is automatically ignored.
+    
   - **Find the average rating per recipe, as a Series**
     - Group by the 'id' (Recipe ID) and get 'rating' column with [],
     - Use `mean()` method to calculate mean of each recipe,
     - Use `reset_index()` and set column names to make it as a DataFrame
     - Left merge average_rating DataFrame and recipes dataset
+
   - **In order to facilitate the extraction of data for later analysis, split the string type of list of nutrition information in `nutrition` column into individual columns**
     - Rename the columns in 'nutritions' DataFrame to match the nutrition information
     - Convert all data in 'nutritions' DataFrame to float type
+
   - **Use One-hot encoding to know if a recipe has specifc tag or not and fill all `np.nan` with 0.**
     - Only get tags I need to use in analysis parts, for example, seasons, some meat and beef related-tags
     - Concatenate `tags` DataFrame with `final_recipes` DataFrame horizontally.
