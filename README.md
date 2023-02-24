@@ -84,6 +84,10 @@ This histogram shows distribution of the 'submitted' column. Specifically, becau
 
 .......
 
+<iframe src="assets/fig_min_less120.html" width=600 height=400 frameBorder=0></iframe>
+
+......
+
 ### Bivariate Analysis
 <iframe src="assets/avg_protein_by_season.html" width=600 height=400 frameBorder=0></iframe>
 
