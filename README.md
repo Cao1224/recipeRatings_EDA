@@ -30,21 +30,24 @@ Note: PDV - stands for “Percentage of Daily Value”
   - Left merge the recipes and interactions datasets together.
   - Fill all ratings of 0 with `np.nan` in 'rating' column. **Following Question: Why we need to fill all ratings of 0 with `np.nan`.**
     - The reason why we need to fill all ratings of 0 with `np.nan` is to handle missing or incomplete data. In some cases, a rating of 0 may indicate that the recipe is not rated at all and does not necessarily reflect the quality of the recipe. By replacing these 0 values with `np.nan`, we can avoid the bias that might be introduced by using 0 ass a proxy for missing values. In addition, when we are computing statistics, `np.nan` is automatically ignored.
-  - Find the average rating per recipe, as a Series
+    
+  - **Find the average rating per recipe, as a Series**
     - Group by the 'id' (Recipe ID) and get 'rating' column with [],
     - Use `mean()` method to calculate mean of each recipe,
     - Use `reset_index()` and set column names to make it as a DataFrame
     - Left merge average_rating DataFrame and recipes dataset
-  - In order to facilitate the extraction of data for later analysis, split the string type of list of nutrition information in `nutrition` column into individual columns
+
+  - **In order to facilitate the extraction of data for later analysis, split the string type of list of nutrition information in `nutrition` column into individual columns**
     - Rename the columns in 'nutritions' DataFrame to match the nutrition information
     - Convert all data in 'nutritions' DataFrame to float type
-  - Use One-hot encoding to know if a recipe has specifc tag or not and fill all `np.nan` with 0
+
+  - **Use One-hot encoding to know if a recipe has specifc tag or not and fill all `np.nan` with 0.**
     - Only get tags I need to use in analysis parts, for example, seasons, some meat and beef related-tags
-    - Concatenate `tags` DataFrame with `final_recipes` DataFrame horizontally
+    - Concatenate `tags` DataFrame with `final_recipes` DataFrame horizontally.
   - Drop the columns that we will not use in the visualization, assesment of missingness, and hypothesis testing parts
   - `final_recipes` DataFrame has 234,429 rows and 32 columns
-3. **Find the Null values**
-4. **Know the datatypes of each column**
+
+- **Other Important Steps**: Find the Null values and Know the datatypes of each column
 
 | name                                 |     id |   minutes |   submitted |   n_steps | description                                                                                                                                                                                                                                                                                                                                                                       |   n_ingredients |   rating |   avg_rating |   calories |   total_fat |   sugar |   sodium |   protein |   saturated_fat |   carbohydrates |   spring |   summer |   fall |   winter |   low-protein |   high-protein |   meatloaf |   meat |   meatballs |   beef-organ-meats |   beef |   ground-beef |   beef-ribs |   roast-beef |
 |:-------------------------------------|-------:|----------:|------------:|----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------:|---------:|-------------:|-----------:|------------:|--------:|---------:|----------:|----------------:|----------------:|---------:|---------:|-------:|---------:|--------------:|---------------:|-----------:|-------:|------------:|-------------------:|-------:|--------------:|------------:|-------------:|
@@ -72,7 +75,7 @@ So we again removed extreme values > 120 minutes, which is 10.36% of the data an
 
 The histogram shows the mean protein content for each season. The graph shows that the fall and winter recipes have a higher mean protein content compared to the spring and summer recipes. Because there are many holidays in the fall and winter, such as Labor Day, Veteran's Day, Thanksgiving, Christmas, New Year, etc. People often have meals with family and friends. Meat and other high-protein foods are cooked in different wayss for their meals. This may result in higher overall protein content in these recipes. On the other hand, spring and summer seasons tend to have more light and fresh meals, with a focus on vegetables and fruits, whcih generally have lower protein content.
 
-<iframe src="assets/protein_mb_tags.html" width=600 height=400 frameBorder=0></iframe>
+<iframe src="assets/protein_mb_tags.html" width=700 height=400 frameBorder=0></iframe>
 
 The box plot allows us to explore the relationship between protein content and meat/beef related tags in dataset. First of all, the box plots of the five groupss have outliers. In contrast to the other, the ditrbution of boxplotss with 2 and 4 meat/beef realted taps iss not very diffuse. When the boxplot of the number of meat/beef related label is 0, it shows that only meat and beef have high protein, but also legumes or other foods without these tags still have high protein.
 
@@ -120,7 +123,17 @@ From the example recipe given directly from the website, food.com, I saw that vi
 
 ### Missingness Dependency
 
+#### If Missingness of column `description` is Dependent on column `avg_rating`
+
+<iframe src="assets/average_missing_description.html" width=600 height=400 frameBorder=0></iframe>
+
 The plot on the top shows distribution of the 'description' column when the ‘avg_rating’ column is missing and distribution of the 'description' column when the ‘avg_rating’ column is not missing. The red line represents distribution of the 'description' column when the 'avg_rating' column is missing and the blue line represents distribution of the 'description' column when the 'avg_rating' column is not missing. We observed that the shape of the two distributions are not alike, especially toward the right tail. However, the we center of the two distributions are roughly the same. So we decided to use Kolmogorov-Smirnov statistic as test statistic. We then performed permutation tests to analyze the dependency of the missingness of the 'description' column on the ‘avg_rating' column. From the 1000 repetitions, we found a p_value of 0.017, so we reject the null hypothesis at significance level 0.05, and conclude that the Missingness of column 'description' is indeed dependent on column 'avg_rating’. However, there is no way for use to conclude a causation relationship between the two columns. The graph in the bottom shows the empirical distribution of the test statistic, with the red line representing the observed statistics. This visualization confirms our conclusion from the calculation. 
+
+<iframe src="assets/empircal_distrbution_plt.html" width=600 height=400 frameBorder=0></iframe>
+
+#### If Missingness of column `description` is Dependent on column `protein`
+
+<iframe src="assets/protein_mis_dis.html" width=600 height=400 frameBorder=0></iframe>
 
 The plot shows the distribution of the 'description' column when the 'protein' column is missing and distribution of the 'description' column when the 'protein' column is not missing. The red line represents distribution of the 'description' column when the 'protein' column is missing and the blue line represents distribution of the 'description' column when the 'protein' column is not missing.We observed that the shape of the two distributions are similar, except the distribution of the 'description' column when the 'protein' column is not missing has a longer right tail due to the larger data group. However, center of the red line seemed slightly greater than center of the blue line, so we decided to use difference in group means as test statistic. We then performed permutation tests to analyze the dependency of the missingness of the 'description' column on the 'protein' columns. From the 1000 repetitions, we found a p_value of 0.306, so we fail to reject the null hypothesis at significance level 0.05, and conclude that the Missingness of column 'description' is not dependent on column 'protein’. Intuitively, this is totally reasonable, because there does not seem to exist a direct relationship between possibly to not providing a description and the amount of proteins contained in the recipes. 
 
